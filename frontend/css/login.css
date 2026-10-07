@@ -322,3 +322,8 @@ body {
     margin-bottom: 10px;
   }
 }
+
+/* O <picture> do logo não deve interferir no layout flex */
+.logo-image-wrapper picture {
+  display: contents;
+}
