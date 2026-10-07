@@ -146,30 +146,12 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 // ================================
 // RECUPERAÇÃO DE SENHA
 // ================================
-document.getElementById("forgotForm").addEventListener("submit", async function(event) {
+document.getElementById("forgotForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const email = document.getElementById("forgotEmail").value.trim();
-
-    try {
-        const response = await fetch(`${window.NOTEWAVE_API}/api/recuperar-senha`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            alert(data.message || data.error);
-            return;
-        }
-
-        alert(data.message + (data.tempPassword ? `\n\nSua nova senha temporária: ${data.tempPassword}` : ""));
-        closeForgotModal();
-
-    } catch (error) {
-        console.error(error);
-        alert("Não foi possível conectar ao servidor.");
-    }
+    // A recuperação de senha ainda não tem endpoint no backend.
+    // Quando for implementada, deve enviar um link com token expirável por e-mail
+    // e nunca devolver a senha na resposta.
+    alert("A recuperação de senha ainda está em desenvolvimento. Em breve você poderá redefinir sua senha por e-mail.");
+    closeForgotModal();
 });
