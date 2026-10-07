@@ -11,7 +11,13 @@ const bcrypt = require('bcrypt');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Só aceita requisições vindas do frontend configurado em CORS_ORIGIN
+// (pode ser uma lista separada por vírgula). O padrão cobre o Live Server do VS Code.
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5500,http://127.0.0.1:5500')
+  .split(',')
+  .map((origin) => origin.trim());
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 // Conexão com o MySQL (credenciais vêm do arquivo .env)
