@@ -20,16 +20,15 @@ function switchTab(tabName) {
 // ================================
 // MOSTRAR / OCULTAR SENHA
 // ================================
-function togglePasswordVisibility(inputId, icon) {
+function togglePasswordVisibility(inputId, button) {
     const input = document.getElementById(inputId);
-
-    if (input.type === "password") {
-        input.type = "text";
-        icon.classList.replace("ph-eye", "ph-eye-slash");
-    } else {
-        input.type = "password";
-        icon.classList.replace("ph-eye-slash", "ph-eye");
-    }
+    const visible = input.type === "password";
+    input.type = visible ? "text" : "password";
+    button.setAttribute("aria-pressed", String(visible));
+    button.setAttribute("aria-label", visible ? "Ocultar senha" : "Mostrar senha");
+    const icon = button.querySelector("i");
+    icon.classList.toggle("ph-eye", !visible);
+    icon.classList.toggle("ph-eye-slash", visible);
 }
 
 // ================================
