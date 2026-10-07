@@ -48,12 +48,13 @@ function closeForgotModal() {
 // CHECAR "LEMBRAR DE MIM" AO CARREGAR
 // ================================
 document.addEventListener("DOMContentLoaded", () => {
-    const savedEmail = localStorage.getItem("remember_email");
-    const savedPass = localStorage.getItem("remember_pass");
+    // Limpa a senha salva por versões antigas (senha nunca deve ficar no navegador)
+    localStorage.removeItem("remember_pass");
 
-    if (savedEmail && savedPass) {
+    const savedEmail = localStorage.getItem("remember_email");
+
+    if (savedEmail) {
         document.getElementById("loginEmail").value = savedEmail;
-        document.getElementById("loginPassword").value = savedPass;
         document.getElementById("rememberMe").checked = true;
     }
 });
@@ -127,10 +128,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (rememberMe) {
             localStorage.setItem("remember_email", email);
-            localStorage.setItem("remember_pass", password);
         } else {
             localStorage.removeItem("remember_email");
-            localStorage.removeItem("remember_pass");
         }
 
         localStorage.setItem("noteWave_user", data.username || data.user?.username);
