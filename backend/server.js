@@ -1,30 +1,33 @@
 // ================================
 // CONFIGURAÇÃO DO SERVIDOR E BANCO
 // ================================
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-// Conexão com o MySQL Workbench
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '123456', 
-  database: 'tcc'
+// Conexão com o MySQL (credenciais vêm do arquivo .env)
+const db = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
-db.connect((err) => {
+db.getConnection((err, conn) => {
   if (err) {
     console.error('Erro ao conectar no MySQL:', err.message);
   } else {
     console.log('Conectado ao MySQL Workbench com sucesso!');
+    conn.release();
   }
 });
 
