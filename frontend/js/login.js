@@ -76,7 +76,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     }
 
     try {
-        const response = await fetch("http://localhost:5000/api/register", {
+        const response = await fetch(`${window.NOTEWAVE_API}/api/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, email, password })
@@ -113,7 +113,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const rememberMe = document.getElementById("rememberMe").checked;
 
     try {
-        const response = await fetch("http://localhost:5000/api/login", {
+        const response = await fetch(`${window.NOTEWAVE_API}/api/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
@@ -152,7 +152,7 @@ document.getElementById("forgotForm").addEventListener("submit", async function(
     const email = document.getElementById("forgotEmail").value.trim();
 
     try {
-        const response = await fetch("http://localhost:5000/api/recuperar-senha", {
+        const response = await fetch(`${window.NOTEWAVE_API}/api/recuperar-senha`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
