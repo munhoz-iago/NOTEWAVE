@@ -47,3 +47,9 @@ As lições apontavam para arquivos `nota-*.mp3` que não existem.
 | licoes-data.js | 14 · O Fundo do Pentagrama | Ré (D2) | `nota-Re1.mp3` | `d2.mp3` |
 
 Observação: os nomes antigos (`nota-Sol1`, `nota-Re1`...) eram os mesmos nas duas claves, mas representam notas diferentes (ex.: `nota-Sol1` é G2 na clave de Fá e G4 na clave de Sol). Usar a notação científica (`g2`, `g4`) evita essa confusão.
+
+## 2. Página de Termos de Uso
+
+Não existe uma página própria de Termos de Uso. No cadastro (`login.html`), o link "Termos de Uso" estava em `#` e agora aponta provisoriamente para `privacidade.html`, igual ao link da Política de Privacidade.
+
+Decisão: criar uma `termos.html` com os termos do NoteWave e trocar o link, ou juntar os dois conteúdos em uma página só e deixar assim.
